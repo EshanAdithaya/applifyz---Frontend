@@ -14,7 +14,7 @@ const App = () => {
       <Layout>
         <Routes>
           {/* Dashboard - Home Page */}
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<AppLayout />} />
           
           {/* Server Monitoring Routes */}
           <Route path="/servers" element={<ServerDashboard />} />
