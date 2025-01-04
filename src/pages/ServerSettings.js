@@ -1,8 +1,4 @@
-// src/components/settings/ServerSettings.tsx
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Plus, X, Mail, Phone, MessageSquare } from 'lucide-react';
 
 const ServerSettings = () => {
@@ -39,49 +35,51 @@ const ServerSettings = () => {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Alert Thresholds</CardTitle>
-        </CardHeader>
-        <CardContent>
+      {/* Alert Thresholds Card */}
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <h2 className="text-lg font-semibold">Alert Thresholds</h2>
+        </div>
+        <div className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Memory Usage Threshold (%)
               </label>
-              <Input
+              <input
                 type="number"
                 value={thresholds.memory}
                 onChange={(e) => setThresholds(prev => ({
                   ...prev,
                   memory: parseInt(e.target.value)
                 }))}
-                className="w-full"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Storage Usage Threshold (%)
               </label>
-              <Input
+              <input
                 type="number"
                 value={thresholds.storage}
                 onChange={(e) => setThresholds(prev => ({
                   ...prev,
                   storage: parseInt(e.target.value)
                 }))}
-                className="w-full"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Notification Settings</CardTitle>
-        </CardHeader>
-        <CardContent>
+      {/* Notification Settings Card */}
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <h2 className="text-lg font-semibold">Notification Settings</h2>
+        </div>
+        <div className="p-6">
           <div className="flex space-x-4 mb-6">
             <button
               onClick={() => setActiveTab('email')}
@@ -120,16 +118,19 @@ const ServerSettings = () => {
 
           <div className="space-y-4">
             <div className="flex space-x-2">
-              <Input
+              <input
                 value={newContact}
                 onChange={(e) => setNewContact(e.target.value)}
                 placeholder={`Add ${activeTab} contact...`}
-                className="flex-1"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
-              <Button onClick={handleAddContact}>
+              <button
+                onClick={handleAddContact}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center"
+              >
                 <Plus size={16} className="mr-2" />
                 Add
-              </Button>
+              </button>
             </div>
 
             <div className="space-y-2">
@@ -141,7 +142,7 @@ const ServerSettings = () => {
                   <span>{contact}</span>
                   <button
                     onClick={() => handleRemoveContact(activeTab, contact)}
-                    className="text-gray-500 hover:text-red-500"
+                    className="text-gray-500 hover:text-red-500 focus:outline-none"
                   >
                     <X size={16} />
                   </button>
@@ -149,8 +150,22 @@ const ServerSettings = () => {
               ))}
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex justify-end space-x-4">
+        <button
+          className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Cancel
+        </button>
+        <button
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Save Changes
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,8 +1,5 @@
-// src/components/notifications/NotificationCenter.tsx
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Bell, AlertTriangle, CheckCircle, Info, Clock } from 'lucide-react';
+import { Bell, AlertTriangle, Info } from 'lucide-react';
 
 const NotificationCenter = () => {
   const [filter, setFilter] = useState('all');
@@ -59,76 +56,103 @@ const NotificationCenter = () => {
         </button>
       </div>
 
-      <Card>
-        <CardHeader>
-          <Tabs defaultValue="all" className="w-full">
-            <TabsList className="grid grid-cols-4 gap-4">
-              <TabsTrigger value="all" className="flex items-center space-x-2">
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6">
+          {/* Custom Tabs */}
+          <div className="border-b pb-4">
+            <div className="flex space-x-4">
+              <button
+                onClick={() => setFilter('all')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+                  filter === 'all'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
                 <Bell size={16} />
                 <span>All</span>
-              </TabsTrigger>
-              <TabsTrigger value="critical" className="flex items-center space-x-2">
+              </button>
+              <button
+                onClick={() => setFilter('critical')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+                  filter === 'critical'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
                 <AlertTriangle size={16} />
                 <span>Critical</span>
-              </TabsTrigger>
-              <TabsTrigger value="warnings" className="flex items-center space-x-2">
+              </button>
+              <button
+                onClick={() => setFilter('warning')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+                  filter === 'warning'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
                 <AlertTriangle size={16} />
                 <span>Warnings</span>
-              </TabsTrigger>
-              <TabsTrigger value="info" className="flex items-center space-x-2">
+              </button>
+              <button
+                onClick={() => setFilter('info')}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+                  filter === 'info'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
                 <Info size={16} />
                 <span>Info</span>
-              </TabsTrigger>
-            </TabsList>
+              </button>
+            </div>
+          </div>
 
-            <TabsContent value="all" className="mt-6">
-              <div className="space-y-4">
-                {notifications.map((notification) => (
-                  <div
-                    key={notification.id}
-                    className={`p-4 rounded-lg border ${
-                      notification.status === 'unread' ? 'bg-blue-50 border-blue-100' : 'bg-white'
-                    }`}
-                  >
-                    <div className="flex items-start space-x-4">
-                      <div className="p-2 rounded-full bg-white">
-                        {getNotificationIcon(notification.type)}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <h3 className="font-medium text-gray-900">
-                            {notification.title}
-                          </h3>
-                          <div className="flex items-center space-x-2">
-                            <span className="text-sm text-gray-500">
-                              {notification.server}
-                            </span>
-                            <Clock size={14} className="text-gray-400" />
-                            <span className="text-sm text-gray-500">
-                              {notification.timestamp}
-                            </span>
-                          </div>
-                        </div>
-                        <p className="mt-1 text-gray-600">{notification.message}</p>
-                        <div className="mt-2 flex items-center space-x-4">
-                          <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                            View Details
-                          </button>
-                          {notification.type === 'critical' && (
-                            <button className="text-red-600 hover:text-red-700 text-sm font-medium">
-                              Take Action
-                            </button>
-                          )}
-                        </div>
+          {/* Notifications List */}
+          <div className="mt-6 space-y-4">
+            {notifications.map((notification) => (
+              <div
+                key={notification.id}
+                className={`p-4 rounded-lg border ${
+                  notification.status === 'unread' ? 'bg-blue-50 border-blue-100' : 'bg-white border-gray-200'
+                }`}
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 rounded-full bg-white">
+                    {getNotificationIcon(notification.type)}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-medium text-gray-900">
+                        {notification.title}
+                      </h3>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-sm text-gray-500">
+                          {notification.server}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          {notification.timestamp}
+                        </span>
                       </div>
                     </div>
+                    <p className="mt-1 text-gray-600">{notification.message}</p>
+                    <div className="mt-2 flex items-center space-x-4">
+                      <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                        View Details
+                      </button>
+                      {notification.type === 'critical' && (
+                        <button className="text-red-600 hover:text-red-700 text-sm font-medium">
+                          Take Action
+                        </button>
+                      )}
+                    </div>
                   </div>
-                ))}
+                </div>
               </div>
-            </TabsContent>
-          </Tabs>
-        </CardHeader>
-      </Card>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

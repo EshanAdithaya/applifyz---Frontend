@@ -1,6 +1,4 @@
-// src/components/dashboard/ServerDashboard.tsx
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Server, HardDrive, CPU, AlertTriangle } from 'lucide-react';
 
@@ -21,71 +19,67 @@ const ServerDashboard = () => {
     <div className="space-y-6">
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <Server className="text-blue-600" size={24} />
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Active Servers</p>
-                <h3 className="text-2xl font-bold">12</h3>
-              </div>
+        <div className="bg-white rounded-lg shadow p-6">
+          <div className="flex items-center space-x-4">
+            <div className="p-3 bg-blue-100 rounded-lg">
+              <Server className="text-blue-600" size={24} />
             </div>
-          </CardContent>
-        </Card>
+            <div>
+              <p className="text-sm text-gray-500">Active Servers</p>
+              <h3 className="text-2xl font-bold">12</h3>
+            </div>
+          </div>
+        </div>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-green-100 rounded-lg">
-                <Memory className="text-green-600" size={24} />
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Avg Memory Usage</p>
-                <h3 className="text-2xl font-bold">72%</h3>
-              </div>
+        <div className="bg-white rounded-lg shadow p-6">
+          <div className="flex items-center space-x-4">
+            <div className="p-3 bg-green-100 rounded-lg">
+              <CPU className="text-green-600" size={24} />
             </div>
-          </CardContent>
-        </Card>
+            <div>
+              <p className="text-sm text-gray-500">Avg Memory Usage</p>
+              <h3 className="text-2xl font-bold">72%</h3>
+            </div>
+          </div>
+        </div>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-purple-100 rounded-lg">
-                <HardDrive className="text-purple-600" size={24} />
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Avg Storage Usage</p>
-                <h3 className="text-2xl font-bold">65%</h3>
-              </div>
+        <div className="bg-white rounded-lg shadow p-6">
+          <div className="flex items-center space-x-4">
+            <div className="p-3 bg-purple-100 rounded-lg">
+              <HardDrive className="text-purple-600" size={24} />
             </div>
-          </CardContent>
-        </Card>
+            <div>
+              <p className="text-sm text-gray-500">Avg Storage Usage</p>
+              <h3 className="text-2xl font-bold">65%</h3>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Main Chart */}
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Server Metrics Overview</CardTitle>
-          <div className="flex space-x-2">
-            {['6h', '24h', '7d', '30d'].map((range) => (
-              <button
-                key={range}
-                onClick={() => setSelectedTimeRange(range)}
-                className={`px-3 py-1 rounded-md text-sm ${
-                  selectedTimeRange === range
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {range}
-              </button>
-            ))}
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <div className="flex flex-row items-center justify-between">
+            <h2 className="text-lg font-semibold">Server Metrics Overview</h2>
+            <div className="flex space-x-2">
+              {['6h', '24h', '7d', '30d'].map((range) => (
+                <button
+                  key={range}
+                  onClick={() => setSelectedTimeRange(range)}
+                  className={`px-3 py-1 rounded-md text-sm ${
+                    selectedTimeRange === range
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  {range}
+                </button>
+              ))}
+            </div>
           </div>
-        </CardHeader>
-        <CardContent>
-          <div className="h-[400px]">
+        </div>
+        <div className="p-6">
+          <div className="h-96">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={metrics}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -111,18 +105,18 @@ const ServerDashboard = () => {
               </LineChart>
             </ResponsiveContainer>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Alert Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <div className="flex items-center space-x-2">
             <AlertTriangle className="text-amber-500" size={20} />
-            <span>Recent Alerts</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+            <h2 className="text-lg font-semibold">Recent Alerts</h2>
+          </div>
+        </div>
+        <div className="p-6">
           <div className="space-y-4">
             {[1, 2, 3].map((alert) => (
               <div key={alert} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
@@ -137,8 +131,8 @@ const ServerDashboard = () => {
               </div>
             ))}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };
