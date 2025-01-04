@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { 
   Home, 
   Server, 
@@ -13,7 +13,36 @@ import {
   User
 } from 'lucide-react';
 
-const Layout = ({ children }) => {
+// Example Page Components
+const HomePage = () => (
+  <div className="p-6 bg-white rounded-lg shadow">
+    <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+    <p>Welcome to your dashboard</p>
+  </div>
+);
+
+const ServersPage = () => (
+  <div className="p-6 bg-white rounded-lg shadow">
+    <h1 className="text-2xl font-bold mb-4">Servers</h1>
+    <p>Manage your servers here</p>
+  </div>
+);
+
+const NotificationsPage = () => (
+  <div className="p-6 bg-white rounded-lg shadow">
+    <h1 className="text-2xl font-bold mb-4">Notifications</h1>
+    <p>View all notifications</p>
+  </div>
+);
+
+const SettingsPage = () => (
+  <div className="p-6 bg-white rounded-lg shadow">
+    <h1 className="text-2xl font-bold mb-4">Settings</h1>
+    <p>Manage your account settings</p>
+  </div>
+);
+
+const AppLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showProfileMenu, setShowProfileMenu] = React.useState(false);
@@ -181,14 +210,19 @@ const Layout = ({ children }) => {
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main Content Area */}
       <div className="ml-16 pt-16">
         <main className="p-6">
-          {children}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/servers" element={<ServersPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+          </Routes>
         </main>
       </div>
     </div>
   );
 };
 
-export default Layout;
+export default AppLayout;
