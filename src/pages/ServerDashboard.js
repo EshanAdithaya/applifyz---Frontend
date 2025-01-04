@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Server, HardDrive, CPU, AlertTriangle } from 'lucide-react';
+import { Server, HardDrive, Cpu, AlertTriangle } from 'lucide-react';
 
 const ServerDashboard = () => {
   const [selectedTimeRange, setSelectedTimeRange] = useState('24h');
@@ -34,7 +34,7 @@ const ServerDashboard = () => {
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center space-x-4">
             <div className="p-3 bg-green-100 rounded-lg">
-              <CPU className="text-green-600" size={24} />
+              <Cpu className="text-green-600" size={24} />
             </div>
             <div>
               <p className="text-sm text-gray-500">Avg Memory Usage</p>
