@@ -12,35 +12,12 @@ import {
   LogOut,
   User
 } from 'lucide-react';
+import ServerDashboard from './pages/ServerDashboard';
+import SettingsPage from './pages/SettingsPage';
+import HomePage from './pages/HomePage';
+import NotificationsPage from './pages/NotificationCenter';
 
-// Example Page Components
-const HomePage = () => (
-  <div className="p-6 bg-white rounded-lg shadow">
-    <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-    <p>Welcome to your dashboard</p>
-  </div>
-);
 
-const ServersPage = () => (
-  <div className="p-6 bg-white rounded-lg shadow">
-    <h1 className="text-2xl font-bold mb-4">Servers</h1>
-    <p>Manage your servers here</p>
-  </div>
-);
-
-const NotificationsPage = () => (
-  <div className="p-6 bg-white rounded-lg shadow">
-    <h1 className="text-2xl font-bold mb-4">Notifications</h1>
-    <p>View all notifications</p>
-  </div>
-);
-
-const SettingsPage = () => (
-  <div className="p-6 bg-white rounded-lg shadow">
-    <h1 className="text-2xl font-bold mb-4">Settings</h1>
-    <p>Manage your account settings</p>
-  </div>
-);
 
 const AppLayout = () => {
   const navigate = useNavigate();
@@ -215,7 +192,7 @@ const AppLayout = () => {
         <main className="p-6">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/servers" element={<ServersPage />} />
+            <Route path="/servers" element={<ServerDashboard />} />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
