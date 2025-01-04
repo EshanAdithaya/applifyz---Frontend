@@ -6,6 +6,7 @@ import NotificationCenter from './pages/NotificationCenter';
 import ServerSettings from './pages/ServerSettings';
 import SettingsPage from './pages/SettingsPage';
 import Layout from './components/layout/Layout.js';
+import HomePage from './pages/HomePage.js';
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
       <Layout>
         <Routes>
           {/* Dashboard - Home Page */}
-          <Route path="/" element={<ServerDashboard />} />
+          <Route path="/" element={<HomePage />} />
           
           {/* Server Monitoring Routes */}
           <Route path="/servers" element={<ServerDashboard />} />

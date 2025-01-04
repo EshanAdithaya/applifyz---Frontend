@@ -17,6 +17,15 @@ const ServerDashboard = () => {
 
   return (
     <div className="space-y-6">
+      {/* Settings Button */}
+      <div className="flex justify-end">
+        <a 
+          href="/servers/settings" 
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+        >
+          Settings
+        </a>
+      </div>
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg shadow p-6">
